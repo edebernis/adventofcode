@@ -36,10 +36,11 @@ class Computer:
 
 
 # Part 1 - Test cases
-assert Computer().run_program([1,0,0,0,99]) == [2,0,0,0,99]
-assert Computer().run_program([2,3,0,3,99]) == [2,3,0,6,99]
-assert Computer().run_program([2,4,4,5,99,0]) == [2,4,4,5,99,9801]
-assert Computer().run_program([1,1,1,4,99,5,6,0,99]) == [30,1,1,4,2,5,6,0,99]
+computer = Computer()
+assert computer.run_program([1,0,0,0,99]) == [2,0,0,0,99]
+assert computer.run_program([2,3,0,3,99]) == [2,3,0,6,99]
+assert computer.run_program([2,4,4,5,99,0]) == [2,4,4,5,99,9801]
+assert computer.run_program([1,1,1,4,99,5,6,0,99]) == [30,1,1,4,2,5,6,0,99]
 
 # Part 1 - Main
 program = list(map(int, open('input_part1').read().split(',')))
@@ -50,12 +51,13 @@ print("Part 1 answer: {0}".format(program[0]))
 
 # Part 2 - Main
 initial_program = list(map(int, open('input_part1').read().split(',')))
+computer = Computer()
 for noun in range(100):
    for verb in range(100):
        program = initial_program.copy()
        program[1] = noun
        program[2] = verb
-       Computer().run_program(program)
+       computer.run_program(program)
        if program[0] == 19690720:
            print("Part 2 answer: {0}".format(100 * noun + verb))
            break
